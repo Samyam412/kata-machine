@@ -10,7 +10,7 @@ export default function prims(list: WeightedAdjacencyList): WeightedAdjacencyLis
     // 3. select edge that is the lowest value and to a node we haven't seen yet
     // 4. we need to insert the edge from current to new into our mst
     // 5. the newly selected node becomes the current node,
-    // 6. repeate to step 2 until unvisited is empty or unreachable
+    // 6. repeat to step 2 until unvisited is empty or unreachable
     // ...
     // 8. $$
 
