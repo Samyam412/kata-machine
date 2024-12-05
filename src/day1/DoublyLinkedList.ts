@@ -15,6 +15,9 @@ export default class DoublyLinkedList<T> {
         this.tail = undefined
     }
 
+
+
+
     prepend(item: T): void {
         const node = { value: item } as Node<T>
         this.length++
@@ -48,8 +51,8 @@ export default class DoublyLinkedList<T> {
         node.prev = curr.prev
         curr.prev = node
 
-        if (curr.prev) {
-            curr.prev.next = node
+        if (node.prev) {
+            node.prev.next = curr
         }
     }
     append(item: T): void {
@@ -68,7 +71,6 @@ export default class DoublyLinkedList<T> {
     }
     remove(item: T): T | undefined {
         let curr = this.head
-
         for (let i = 0; curr && i < this.length; ++i) {
             if (curr.value === item) {
                 break
@@ -104,13 +106,11 @@ export default class DoublyLinkedList<T> {
             return undefined
         }
         if (node.prev) {
-            node.prev = node.next
+            node.prev.next = node.next
         }
         if (node.next) {
-            node.next = node.prev
+            node.next.prev = node.prev
         }
-
-
 
         if (node === this.head) {
             this.head = node.next
@@ -122,12 +122,11 @@ export default class DoublyLinkedList<T> {
         node.prev = node.next = undefined
         return node.value
 
-
-
     }
+
     private getAt(idx: number): Node<T> | undefined {
         let curr = this.head
-        for (let i = 0; curr && i < this.length; ++i) {
+        for (let i = 0; curr && i < idx; ++i) {
             curr = curr.next
         }
         return curr
